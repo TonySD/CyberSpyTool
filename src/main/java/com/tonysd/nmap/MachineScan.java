@@ -23,7 +23,7 @@ public class MachineScan {
         return parseNmapOutput(reader);
     }
 
-    private static List<Machine> parseNmapOutput(BufferedReader outputStream) throws IOException {
+    private static List<Machine> parseNmapOutput(BufferedReader outputStream) throws IOException, InterruptedException {
         List<Machine> machines = new ArrayList<>();
         String outputLine;
         Matcher found_ips;
@@ -35,7 +35,7 @@ public class MachineScan {
                         new Machine(found_ips.group())
                 );
         }
-
+        outputStream.close();
         return machines;
     }
 }
